@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id='bean' class="ex1_xml3_list.ListBean"> 
+	<property name="intList">
+		<!-- value가 여러개면 list로 해서 작성 -->
+		<list>
+			<value>23</value>
+			<value>33</value>
+			<value>44</value>
+		</list>
+	</property>
+	<property name="memberList">
+		<list>
+			<!-- 참조형은 ref /bean에 들어올 객체 지정 해줘야함 -->
+			<ref bean='mb1'></ref>
+			<ref bean='mb2'/>
+			<bean id='mb3' class="ex1_xml3_list.MemberBean">
+				<!-- setter나 생성자 값 지정 // 바로받아줄때는 id 생략해도된다 -->
+				<property name='name' value='홍길자'></property>
+				<property name='age' value='35'></property>
+				<property name='message' value='잘가'></property>
+			</bean>
+		</list>
+	</property>
+</bean>
+	
+<bean id='mb1' class="ex1_xml3_list.MemberBean">
+	<!-- 1) setter 이용 값 지정 -->
+	<property name='name' value='홍길순'></property>
+	<property name='age' value='25'></property>
+	<property name='message' value='안녕하세요'></property>
+</bean>
+	
+<bean id='mb2' class="ex1_xml3_list.MemberBean">
+	<!-- 2) constructor 이용 값 지정 -->	
+	<constructor-arg name='name' value='홍길동'></constructor-arg>
+	<constructor-arg name='age' value='15'></constructor-arg>
+	<constructor-arg name='message' value='이제 그만'></constructor-arg>
+</bean>
+
+
+
+</beans>
